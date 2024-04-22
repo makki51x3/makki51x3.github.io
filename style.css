@@ -21,15 +21,16 @@ body, html {
 }
 
 #roastDisplay {
-    font-family: 'Major Mono Display', monospace; /* Use the custom font */
-    font-size: 48px; /* Triple the size, adjust based on your current size */
-    color: #333; /* Set text color, change as needed */
-    padding: 20px; /* Add padding around the text */
-    text-align: left; /* Align text to the left */
-    border: 1px solid #ccc; /* Optional: adds a border around the text container */
-    margin: 0 auto; /* Centers the container */
-    width: 80%; /* Set the width of the text container */
+    font-family: 'Major Mono Display', monospace; /* Specific font */
+    font-size: 48px; /* Adjusted size, triple the original assuming the original was 16px */
+    color: #333; /* Text color */
+    padding: 20px; /* Padding around the text */
+    text-align: left; /* Alignment of text */
+    border: 1px solid #ccc; /* Optional border */
+    margin: 0 auto; /* Centering the container */
+    width: 80%; /* Control width to not span full page */
 }
+
 
 .navbar {
     margin-bottom: 20px;
