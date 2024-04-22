@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Declare a variable to hold the TypeIt instance
+    // Initialize TypeIt instance globally if it will be used more than once
     let typeItInstance = new TypeIt('#roastDisplay', {
         startDelay: 500,
         typeSpeed: 50,
@@ -7,22 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
         loop: false
     });
 
-    // Function to fetch and display a new joke
+    // Fetch and display a joke immediately on load
+    fetchJoke();
+
+    // Event listener for the roast generation button to fetch and display a new joke
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        fetchJoke();
+    });
+
     function fetchJoke() {
         fetch('https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart')
             .then(response => response.json())
             .then(data => {
-                if(data.error) {
+                if (data.error) {
                     document.getElementById('roastDisplay').innerText = "Failed to fetch a joke.";
                 } else {
-                    // Reset the current display and prepare for new joke
-                    typeItInstance.reset();
-                    
-                    // Determine the type of joke and format it
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
-
-                    // Display the new joke
-                    typeItInstance.type(jokeText).go();
+                    
+                    // Reset the TypeIt instance before displaying new text
+                    typeItInstance.reset().pause(500).type(jokeText).go();
                 }
             })
             .catch(error => {
@@ -30,10 +33,4 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Fetch error:", error);
             });
     }
-
-    // Fetch and display a joke immediately on load
-    fetchJoke();
-
-    // Event listener for the roast generation button to fetch and display a new joke
-    document.getElementById('generateBtn').addEventListener('click', fetchJoke);
 });
