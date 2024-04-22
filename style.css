@@ -4,6 +4,12 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+#typed-text {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 32px;
+    color: #ff6347; /* Tomato red for visibility */
+    white-space: pre; /* Keeps the spacing and formatting */
+}
 
 .logo {
     max-width: 200px; /* Adjust as needed */
