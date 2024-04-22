@@ -3,10 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startDelay: 500,
         typeSpeed: 50,
         backSpeed: 25,
-        loop: false,
-        afterComplete: function (instance) {
-            instance.destroy();
-        }
+        loop: false
     });
 
     function fetchJoke() {
@@ -18,30 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
 
-                    // Check if the TypeIt instance is already initialized
+                    // Reset and prepare the TypeIt instance
                     if (typeItInstance) {
                         typeItInstance.reset();
                     }
 
-                    // Delay handling and initialization of TypeIt
-                    typeItInstance = new TypeIt('#roastDisplay', {
-                        startDelay: 500,
-                        typeSpeed: 25,
-                        afterComplete: function (instance) {
-                            if (jokeText.includes("...")) {
-                                const parts = jokeText.split("...");
-                                setTimeout(function() {
-                                    instance.empty().type(parts[1]).go();
-                                }, getRandomDelay());
-                            }
-                        }
-                    });
-
+                    // Handling jokes with two parts split by "..."
                     if (jokeText.includes("...")) {
-                        // Type the first part and handle the rest in afterComplete
-                        typeItInstance.type(jokeText.split("...")[0]).go();
+                        const parts = jokeText.split("...");
+                        // Initialize TypeIt with the first part
+                        typeItInstance.type(parts[0]).exec(() => {
+                            // Wait a random delay before typing the second part
+                            setTimeout(() => {
+                                typeItInstance.options({startDelay: 500}).type(parts[1]).go();
+                            }, getRandomDelay());
+                        }).go();
                     } else {
-                        // If there's no delay, just type the joke
+                        // Directly type the whole joke if there's no "..."
                         typeItInstance.type(jokeText).go();
                     }
                 }
