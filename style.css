@@ -21,8 +21,8 @@ body, html {
 }
 
 #roastDisplay {
-    font-family: 'Major Mono Display', monospace; /* Specific font */
-    font-size: 48px; /* Adjusted size, triple the original assuming the original was 16px */
+    font-family: 'Creepster', cursive;
+    font-size: 43px; /* Adjusted size, triple the original assuming the original was 16px */
     color: #333; /* Text color */
     padding: 20px; /* Padding around the text */
     text-align: left; /* Alignment of text */
