@@ -1,14 +1,20 @@
 document.getElementById('generateBtn').addEventListener('click', function() {
-    fetch('https://v2.jokeapi.dev/joke/Any?type=single')
+    // Fetching jokes from the "Dark" and "Pun" categories with both "Single" and "Twopart" types
+    fetch('https://v2.jokeapi.dev/joke/Dark,Pun?type=single,twopart')
         .then(response => response.json())
-               .then(data => {
+        .then(data => {
             if(data.error) {
-                document.getElementById('roastDisplay').innerText = "Failed to fetch a roast.";
+                document.getElementById('roastDisplay').innerText = "Failed to fetch a joke.";
             } else {
-                document.getElementById('roastDisplay').innerText = data.joke;
+                // Displaying the joke or setup and delivery based on type
+                if (data.type === 'single') {
+                    document.getElementById('roastDisplay').innerText = data.joke;
+                } else if (data.type === 'twopart') {
+                    document.getElementById('roastDisplay').innerText = `${data.setup} ... ${data.delivery}`;
+                }
             }
         })
         .catch(error => {
-            document.getElementById('roastDisplay').innerText = "Error fetching a roast.";
+            document.getElementById('roastDisplay').innerText = "Error fetching a joke.";
         });
 });
