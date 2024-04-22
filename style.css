@@ -21,12 +21,12 @@ body, html {
 }
 
 #roastDisplay {
-    font-family: 'Creepster', cursive;
-    font-size: 43px; /* Adjusted size, triple the original assuming the original was 16px */
+    font-family: 'Oswald', sans-serif;
+    font-size: 37px; /* Adjusted size, triple the original assuming the original was 16px */
     color: #333; /* Text color */
-    padding: 20px; /* Padding around the text */
+    padding: 15px; /* Padding around the text */
     text-align: left; /* Alignment of text */
-    border: 1px solid #ccc; /* Optional border */
+    border: 3px solid #ccc; /* Optional border */
     margin: 0 auto; /* Centering the container */
     width: 80%; /* Control width to not span full page */
 }
