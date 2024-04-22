@@ -4,6 +4,16 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+
+.logo {
+    max-width: 200px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.roast-text {
+    margin-bottom: 20px; /* Add space above the button */
+}
+
 .navbar {
     margin-bottom: 20px;
 }
@@ -16,6 +26,11 @@ body, html {
     text-align: center;
     padding: 20px;
     background-color: #f4f4f4;
+}
+
+/* Social media icons */
+.social-icon {
+    margin-right: 8px;
 }
 
 h1 {
