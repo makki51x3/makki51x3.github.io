@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the TypeIt effect with a default message
     new TypeIt('#roastDisplay', {
         strings: ["Press 'Generate Roast' to start!"],
-        speed: 50,
+        speed: 30,
         loop: true
     });
 
