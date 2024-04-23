@@ -14,7 +14,7 @@ body, html {
 
 #typed-text {
     font-family: 'Major Mono Display', monospace;
-    font-size: 32px;
+    font-size: 28px;
     color: #ff6347; /* Tomato red for visibility */
     white-space: pre; /* Keeps the spacing and formatting */
 }
