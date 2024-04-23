@@ -15,18 +15,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
 
-                    // Reset and clear the existing instance before reusing
-                    typeItInstance.reset();
+                    // Explicitly clear the content of #roastDisplay
+                    document.getElementById('roastDisplay').innerHTML = "";
+
+                    // Ensure the TypeIt instance is properly reset
+                    if (typeItInstance) {
+                        typeItInstance.destroy();
+                    }
+
+                    // Reinitialize TypeIt instance with new settings
+                    typeItInstance = new TypeIt('#roastDisplay', {
+                        startDelay: 500,
+                        typeSpeed: 50,
+                        backSpeed: 25,
+                        loop: false
+                    });
 
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
-                        // Type the first part and then pause
-                        typeItInstance.empty().type(parts[0])
-                        .pause(getRandomDelay()) // Use the pause method with dynamic delay
-                        .type(parts[1]) // Continue with the second part after the pause
+                        typeItInstance.type(parts[0])
+                        .pause(getRandomDelay())
+                        .type(parts[1])
                         .go();
                     } else {
-                        typeItInstance.empty().type(jokeText).go();
+                        typeItInstance.type(jokeText).go();
                     }
                 }
             })
