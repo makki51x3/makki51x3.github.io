@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Fetch and display a joke immediately on load
+    fetchJoke();
+
+    // Event listener for the roast generation button to fetch and display a new joke
+    document.getElementById('generateBtn').addEventListener('click', fetchJoke);
+});
+
     function fetchJoke() {
         fetch('https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart')
             .then(response => response.json())
@@ -44,13 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Fetch error:", error);
             });
     }
-
-    // Fetch and display a joke immediately on load
-    fetchJoke();
-
-    // Event listener for the roast generation button to fetch and display a new joke
-    document.getElementById('generateBtn').addEventListener('click', fetchJoke);
-});
 
 // Function to generate a random delay between 1 to 2 seconds, returning milliseconds
 function getRandomDelay() {
