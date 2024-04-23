@@ -1,24 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize an empty variable for TypeIt instance
-    let typeItInstance = null;
+    // Set up the initial TypeIt instance with a guiding message
+    let typeItInstance = new TypeIt('#roastDisplay', {
+        strings: ["Click the logo to generate a roast!"],
+        startDelay: 500,
+        typeSpeed: 50,
+        backSpeed: 25,
+        loop: false
+    }).go();
 
-    function initializeTypeIt() {
-        return new TypeIt('#roastDisplay', {
-            startDelay: 500,
-            typeSpeed: 50,
-            backSpeed: 25,
-            loop: false
-        });
-    }
+    // Reference to the logo that acts as the generate button
+    const logoButton = document.querySelector('.logo');
 
-    // Fetch and display a joke immediately on load
-    fetchJoke();
-
-    // Event listener for the roast generation button to fetch and display a new joke
-    document.getElementById('generateBtn').addEventListener('click', fetchJoke);
-});
+    // Event listener for the logo to fetch and display a new joke
+    logoButton.addEventListener('click', fetchJoke);
 
     function fetchJoke() {
+        // Ensure there's no ongoing TypeIt instance
+        if (typeItInstance) {
+            typeItInstance.destroy();
+        }
+
         fetch('https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart')
             .then(response => response.json())
             .then(data => {
@@ -27,13 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
 
-                    // Destroy the old instance if it exists
-                    if (typeItInstance) {
-                        typeItInstance.destroy();
-                    }
-
-                    // Reinitialize TypeIt
-                    typeItInstance = initializeTypeIt();
+                    // Reinitialize TypeIt instance to display the new joke
+                    typeItInstance = new TypeIt('#roastDisplay', {
+                        startDelay: 500,
+                        typeSpeed: 50,
+                        backSpeed: 25,
+                        loop: false
+                    });
 
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
@@ -51,8 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Fetch error:", error);
             });
     }
+});
 
-// Function to generate a random delay between 1 to 2 seconds, returning milliseconds
+// Function to generate a random delay between 1 to 2 seconds
 function getRandomDelay() {
     return Math.floor(Math.random() * 1000) + 1000; // Random delay between 1000 and 2000 ms
 }
