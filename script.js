@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
                         // Type the first part and then pause
-                        typeItInstance.type(parts[0])
+                        typeItInstance.empty().type(parts[0])
                         .pause(getRandomDelay()) // Use the pause method with dynamic delay
                         .type(parts[1]) // Continue with the second part after the pause
                         .go();
                     } else {
-                        typeItInstance.type(jokeText).go();
+                        typeItInstance.empty().type(jokeText).go();
                     }
                 }
             })
