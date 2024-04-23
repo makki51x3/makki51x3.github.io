@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize TypeIt with a welcome message on load
     typeItInstance = initializeTypeIt();
-    typeItInstance.type("Press 'Generate Roast' to start!").go();
+    typeItInstance.type("Press the Logo to Generate a Roast!").go();
 
     // Replace 'generateBtn' with the element that triggers the fetchJoke function
     document.querySelector('.logo').addEventListener('click', fetchJoke);
