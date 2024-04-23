@@ -12,25 +12,14 @@ body, html {
     transform: scale(0.98); /* Slightly scale down the logo when it is clicked */
 }
 
-#typed-text {
-    font-family: 'Major Mono Display', monospace;
-    font-size: 28px;
-    color: #ff6347; /* Tomato red for visibility */
-    white-space: pre; /* Keeps the spacing and formatting */
-}
-
 .logo {
     max-width: 200px; /* Adjust as needed */
     margin-bottom: 20px;
 }
 
-.roast-text {
-    margin-bottom: 20px; /* Add space above the button */
-}
-
 #roastDisplay {
     font-family: 'Oswald', sans-serif;
-    font-size: 37px; /* Adjusted size, triple the original assuming the original was 16px */
+    font-size: 33px; /* Adjusted size, triple the original assuming the original was 16px */
     color: #333; /* Text color */
     padding: 15px; /* Padding around the text */
     text-align: left; /* Alignment of text */
