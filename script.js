@@ -20,15 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
-                        // Type the first part
+                        // Type the first part and then pause
                         typeItInstance.type(parts[0])
-                        .exec(() => {
-                            // Ensure the pause is effective and only then proceed
-                            setTimeout(() => {
-                                // Clear after the first part and start the second part
-                                typeItInstance.empty().type(parts[1]).go();
-                            }, getRandomDelay());
-                        }).go();
+                        .pause(getRandomDelay()) // Use the pause method with dynamic delay
+                        .type(parts[1]) // Continue with the second part after the pause
+                        .go();
                     } else {
                         typeItInstance.type(jokeText).go();
                     }
@@ -44,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('generateBtn').addEventListener('click', fetchJoke);
 });
 
-// Function to generate a random delay between 1 to 2 seconds
+// Function to generate a random delay between 1 to 2 seconds, returning milliseconds
 function getRandomDelay() {
     return Math.floor(Math.random() * 1000) + 1000; // Random delay between 1000 and 2000 ms
 }
