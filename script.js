@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let typeItInstance = new TypeIt('#roastDisplay', {
-        startDelay: 500,
-        typeSpeed: 50,
-        backSpeed: 25,
-        loop: false
-    });
+    // Initialize an empty variable for TypeIt instance
+    let typeItInstance = null;
+
+    function initializeTypeIt() {
+        return new TypeIt('#roastDisplay', {
+            startDelay: 500,
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: false
+        });
+    }
 
     function fetchJoke() {
         fetch('https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart')
@@ -15,28 +20,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
 
-                    // Explicitly clear the content of #roastDisplay
-                    document.getElementById('roastDisplay').innerHTML = "";
-
-                    // Ensure the TypeIt instance is properly reset
+                    // Destroy the old instance if it exists
                     if (typeItInstance) {
                         typeItInstance.destroy();
                     }
 
-                    // Reinitialize TypeIt instance with new settings
-                    typeItInstance = new TypeIt('#roastDisplay', {
-                        startDelay: 500,
-                        typeSpeed: 50,
-                        backSpeed: 25,
-                        loop: false
-                    });
+                    // Reinitialize TypeIt
+                    typeItInstance = initializeTypeIt();
 
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
                         typeItInstance.type(parts[0])
-                        .pause(getRandomDelay())
-                        .type(parts[1])
-                        .go();
+                            .pause(getRandomDelay())
+                            .type(parts[1])
+                            .go();
                     } else {
                         typeItInstance.type(jokeText).go();
                     }
@@ -47,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Fetch error:", error);
             });
     }
+
+    // Fetch and display a joke immediately on load
+    fetchJoke();
 
     // Event listener for the roast generation button to fetch and display a new joke
     document.getElementById('generateBtn').addEventListener('click', fetchJoke);
