@@ -34,14 +34,8 @@
     </nav>
 
     <div class="container mt-4 text-center">
-        <img src="MENACE_LOGO.jpeg" alt="Menace MemeCoin Logo" class="logo"> <!-- Update the path to your logo -->
+        <img src="MENACE_LOGO.jpeg" alt="Menace MemeCoin Logo" class="logo clickable" onclick="fetchJoke()" title="Click to generate a roast!">
         <div id="roastDisplay"></div>
-        <button id="generateBtn" class="generate-roast-btn">Generate Roast</button>
-        <br>
-        <label>
-            <input type="checkbox" id="speakCheckbox" checked>
-            Enable Text-to-Speech
-        </label>
     </div>
 
     <div id="about" class="container mt-4">
