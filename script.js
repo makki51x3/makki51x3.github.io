@@ -1,15 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let typeItInstance = null;
-
-    // Initialize TypeIt only once and reuse the instance
-    typeItInstance = new TypeIt('#roastDisplay', {
+    let typeItInstance = new TypeIt('#roastDisplay', {
         startDelay: 500,
         typeSpeed: 50,
         backSpeed: 25,
-        loop: false,
-        afterComplete: function(instance) {
-            instance.destroy();
-        }
+        loop: false
     });
 
     function fetchJoke() {
@@ -26,9 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
-                        typeItInstance.type(parts[0]).pause(500).exec(() => {
+                        // Type the first part
+                        typeItInstance.type(parts[0])
+                        .exec(() => {
+                            // Ensure the pause is effective and only then proceed
                             setTimeout(() => {
-                                typeItInstance.type(parts[1]).go();
+                                // Clear after the first part and start the second part
+                                typeItInstance.empty().type(parts[1]).go();
                             }, getRandomDelay());
                         }).go();
                     } else {
