@@ -4,6 +4,15 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+.clickable {
+    cursor: pointer;
+    transition: transform 0.2s; /* Adds a slight transformation when clicked */
+}
+
+.clickable:active {
+    transform: scale(0.98); /* Slightly scale down the logo when it is clicked */
+}
+
 #typed-text {
     font-family: 'Major Mono Display', monospace;
     font-size: 32px;
