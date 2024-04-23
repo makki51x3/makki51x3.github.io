@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let typeItInstance = new TypeIt('#roastDisplay', {
+    let typeItInstance = null;
+
+    // Initialize TypeIt only once and reuse the instance
+    typeItInstance = new TypeIt('#roastDisplay', {
         startDelay: 500,
         typeSpeed: 50,
         backSpeed: 25,
-        loop: false
+        loop: false,
+        afterComplete: function(instance) {
+            instance.destroy();
+        }
     });
 
     function fetchJoke() {
@@ -15,23 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
 
-                    // Reset and prepare the TypeIt instance
-                    if (typeItInstance) {
-                        typeItInstance.reset();
-                    }
+                    // Reset and clear the existing instance before reusing
+                    typeItInstance.reset();
 
-                    // Handling jokes with two parts split by "..."
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
-                        // Initialize TypeIt with the first part
-                        typeItInstance.type(parts[0]).exec(() => {
-                            // Wait a random delay before typing the second part
+                        typeItInstance.type(parts[0]).pause(500).exec(() => {
                             setTimeout(() => {
-                                typeItInstance.options({startDelay: 500}).type(parts[1]).go();
+                                typeItInstance.type(parts[1]).go();
                             }, getRandomDelay());
                         }).go();
                     } else {
-                        // Directly type the whole joke if there's no "..."
                         typeItInstance.type(jokeText).go();
                     }
                 }
@@ -41,9 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Fetch error:", error);
             });
     }
-
-    // Fetch and display a joke immediately on load
-    fetchJoke();
 
     // Event listener for the roast generation button to fetch and display a new joke
     document.getElementById('generateBtn').addEventListener('click', fetchJoke);
