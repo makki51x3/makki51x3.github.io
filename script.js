@@ -1,30 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize an empty variable for TypeIt instance
     let typeItInstance = null;
-    let synth = window.speechSynthesis; // Get the speech synthesis object
 
     function initializeTypeIt() {
         return new TypeIt('#roastDisplay', {
             startDelay: 500,
             typeSpeed: 50,
             backSpeed: 25,
-            loop: false,
-            afterComplete: function(instance) {
-                // Check if speech is enabled
-                if (document.getElementById('speakCheckbox').checked) {
-                    speak(instance.strings.join(' '));
-                }
-                instance.destroy(); // Optionally reset the instance here
-            }
+            loop: false
         });
-    }
-
-    function speak(text) {
-        if (synth.speaking) {
-            console.error('SpeechSynthesis is already speaking.');
-            return;
-        }
-        let utterance = new SpeechSynthesisUtterance(text);
-        synth.speak(utterance);
     }
 
     function fetchJoke() {
@@ -36,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
 
+                    // Destroy the old instance if it exists
                     if (typeItInstance) {
                         typeItInstance.destroy();
                     }
 
+                    // Reinitialize TypeIt
                     typeItInstance = initializeTypeIt();
 
                     if (jokeText.includes("...")) {
