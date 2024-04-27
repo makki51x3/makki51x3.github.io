@@ -6,23 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const containers = document.querySelectorAll('.container');
     const contactSection = document.getElementById('contact');
 
+    // Update logo click to toggle modes
     logo.addEventListener('click', function() {
-        isEvilMode = !isEvilMode;
-        if (isEvilMode) {
-            bodyElement.classList.add('evil-mode');
-            navbar.classList.add('evil-mode');
-            logo.classList.add('evil-mode');
-            containers.forEach(container => container.classList.add('evil-mode'));
-            contactSection.classList.add('evil-mode');
-            logo.src = './assets/images/devil_MENACE.png';
-        } else {
-            bodyElement.classList.remove('evil-mode');
-            navbar.classList.remove('evil-mode');
-            logo.classList.remove('evil-mode');
-            containers.forEach(container => container.classList.remove('evil-mode'));
-            contactSection.classList.remove('evil-mode');
-            logo.src = './assets/images/angel_MENACE.png';
-        }
+        isEvilMode = !isEvilMode; // Toggle the mode state
+        bodyElement.classList.toggle('evil-mode', isEvilMode);
+        bodyElement.classList.toggle('good-mode', !isEvilMode);
+        navbar.classList.toggle('evil-mode', isEvilMode);
+        navbar.classList.toggle('good-mode', !isEvilMode);
+        logo.classList.toggle('evil-mode', isEvilMode);
+        logo.src = isEvilMode ? './assets/images/devil_MENACE.png' : './assets/images/angel_MENACE.png';
+
+        containers.forEach(container => container.classList.toggle('evil-mode', isEvilMode));
+        contactSection.classList.toggle('evil-mode', isEvilMode);
     });
 
     let typeItInstance = initializeTypeIt();
