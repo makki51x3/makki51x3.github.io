@@ -1,37 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-
     let isEvilMode = false;
-    const modeToggleButton = document.getElementById('modeToggle');
     const bodyElement = document.body;
     const navbar = document.querySelector('.navbar');
     const logo = document.querySelector('.logo');
+    const containers = document.querySelectorAll('.container');
+    const contactSection = document.getElementById('contact');
 
-    modeToggleButton.addEventListener('click', function() {
-        isEvilMode = !isEvilMode; // Toggle the state
+    logo.addEventListener('click', function() {
+        isEvilMode = !isEvilMode;
         if (isEvilMode) {
             bodyElement.classList.add('evil-mode');
             navbar.classList.add('evil-mode');
             logo.classList.add('evil-mode');
-            modeToggleButton.textContent = 'Switch to Good Mode';
+            containers.forEach(container => container.classList.add('evil-mode'));
+            contactSection.classList.add('evil-mode');
+            logo.src = './assets/images/devil_MENACE.png';
         } else {
             bodyElement.classList.remove('evil-mode');
             navbar.classList.remove('evil-mode');
             logo.classList.remove('evil-mode');
-            modeToggleButton.textContent = 'Switch to Evil Mode';
+            containers.forEach(container => container.classList.remove('evil-mode'));
+            contactSection.classList.remove('evil-mode');
+            logo.src = './assets/images/angel_MENACE.png';
         }
     });
-    
-    let typeItInstance = null;
 
-    function initializeTypeIt() {
-        // Ensuring each initialization starts fresh
-        return new TypeIt('#roastDisplay', {
-            startDelay: 500,
-            typeSpeed: 50,
-            backSpeed: 25,
-            loop: false
-        });
-    }
+    let typeItInstance = initializeTypeIt();
+    typeItInstance.type("Welcome!").go();
 
     function fetchJoke() {
         fetch('https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart')
@@ -41,24 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('roastDisplay').innerText = "Failed to fetch a joke.";
                 } else {
                     const jokeText = data.type === 'single' ? data.joke : `${data.setup} ... ${data.delivery}`;
-
-                    // Explicitly clear the content of #roastDisplay
                     document.getElementById('roastDisplay').innerHTML = "";
-
-                    // Destroy the old instance if it exists
                     if (typeItInstance) {
                         typeItInstance.destroy();
                     }
-
-                    // Reinitialize the TypeIt instance for fresh use
                     typeItInstance = initializeTypeIt();
-
                     if (jokeText.includes("...")) {
                         const parts = jokeText.split("...");
-                        typeItInstance.type(parts[0])
-                            .pause(getRandomDelay())  // Pause between the parts
-                            .type(parts[1])  // Continue with the second part
-                            .go();
+                        typeItInstance.type(parts[0]).pause(getRandomDelay()).type(parts[1]).go();
                     } else {
                         typeItInstance.type(jokeText).go();
                     }
@@ -70,15 +55,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Initialize TypeIt with a welcome message on load
-    typeItInstance = initializeTypeIt();
-    typeItInstance.type("Press the Logo to Generate a Roast!").go();
+    setInterval(fetchJoke, 20000); // Fetches a joke every 20 seconds
 
-    // Replace 'generateBtn' with the element that triggers the fetchJoke function
-    document.querySelector('.logo').addEventListener('click', fetchJoke);
+    function initializeTypeIt() {
+        return new TypeIt('#roastDisplay', {
+            startDelay: 1000,
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: false
+        });
+    }
+
+    function getRandomDelay() {
+        return Math.floor(Math.random() * 1000) + 1000;
+    }
 });
-
-// Function to generate a random delay between 1 to 2 seconds
-function getRandomDelay() {
-    return Math.floor(Math.random() * 1000) + 1000;  // Random delay between 1000 and 2000 ms
-}

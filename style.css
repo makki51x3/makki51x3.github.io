@@ -46,7 +46,7 @@ body, html {
 }
 
 .logo {
-    width: 100%; /* Makes the image stretch to cover the full width */
+    width: 70%; /* Makes the image stretch to cover the full width */
     height: auto; /* Maintains the aspect ratio */
     object-fit: cover; /* Covers the area without losing aspect ratio */
     margin: 20px;
@@ -54,7 +54,7 @@ body, html {
 
 .logo-container {
     width: calc(100% - 40px); /* Adjusts for the margin */
-    margin: 20px;
+    margin: 0px;
     display: flex; /* This will center your image */
     justify-content: center; /* Align horizontally */
     align-items: center; /* Align vertically */
@@ -117,16 +117,38 @@ body {
     color: black;
 }
 
-/* Evil mode styles */
+/* Evil mode styles for body */
 body.evil-mode {
-    background-color: black;
-    color: red;
+    background: linear-gradient(to right, #250b0b, #1b0808, #241313, #4b1919, #1b0000); /* Dark gradient background */
 }
 
+/* Evil mode styles for .container */
+.container.evil-mode {
+    background: linear-gradient(to right, #000000, #251f1f, #1c1919, #1a1717, #161313); /* Dark gradient adjusted for container */
+}
+
+/* Update styles for navbar and logo if needed */
 .navbar.evil-mode {
-    background-color: darkred;
+    background-color: #a30000; /* Darker navbar background */
 }
 
 .logo.evil-mode {
-    filter: invert(100%);
+    filter: brightness(0.8); /* Adjust brightness to fit dark theme */
+}
+
+/* Evil mode styles for Contact Us section */
+#contact.evil-mode, #contact.evil-mode a, #contact.evil-mode p, #contact.evil-mode h1 {
+    color: white; /* Set text color to white */
+}
+
+/* Evil mode styles for SVG icons */
+#contact.evil-mode .social-icon svg {
+    fill: white; /* Set SVG icon fill to white */
+}
+
+#contact {
+    padding: 50px;
+    border-radius: 0%;
+    min-width:100%;
+    opacity:100%;
 }
