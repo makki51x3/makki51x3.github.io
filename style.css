@@ -22,7 +22,7 @@ body, html {
     font-size: 33px; /* Adjusted size, triple the original assuming the original was 16px */
     color: #333; /* Text color */
     padding: 15px; /* Padding around the text */
-    text-align: left; /* Alignment of text */
+    text-align: center; /* Alignment of text */
     border: 3px solid #ccc; /* Optional border */
     margin: 0 auto; /* Centering the container */
     width: 80%; /* Control width to not span full page */
