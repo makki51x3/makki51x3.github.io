@@ -8,17 +8,17 @@ body, html {
 .navbar {
     margin-bottom: 20px;
     transition: background-color 0.3s; /* Smooth transition for background color */
-    background: linear-gradient(to bottom,#cfac6a, #ddbf88, #cfb076, #bda16d, #a08553);
+    background: linear-gradient(to bottom, #b3a16b,#c0b39a, #c4b18f, #ac9b7b, #8f784d);
 }
 
 /* Evil mode styles for body */
 body.evil-mode {
-    background: linear-gradient(to right, #250b0b, #1b0808, #241313, #4b1919, #1b0000); /* Dark gradient background */
+    background: linear-gradient(to right, #250b0b, #1b0808, #241313, #4b1919, #020000); /* Dark gradient background */
 }
 
 /* Evil mode styles for navbar */
 .navbar.evil-mode {
-    background: linear-gradient(to bottom, #161313, #1a1717, #251f1f, #1a1717, #161313); /* Dark gradient adjusted for container */
+    background: linear-gradient(to bottom, #161313, #1a1717, #251f1f, #1a1717, #020000); /* Dark gradient adjusted for container */
 }
 
 /* Good mode styles for body, if needed explicitly */
@@ -161,7 +161,7 @@ a:hover {
     border-radius: 0%;
     min-width:100%;
     opacity:100%;
-    background: linear-gradient(to bottom,#cfac6a, #ddbf88, #cfb076, #bda16d, #a08553);
+    background: linear-gradient(to bottom, #c2b795,#c0b39a, #c0b196, #c2b295, #ddc9a2);
 }
 
 #contact.evil-mode{
