@@ -2,6 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
+    background: linear-gradient(center, #e4e1db, #d6d4ce, #d6d3cd, #d6d4ce, #e4e1db);
 }
 .clickable {
     cursor: pointer;
@@ -12,15 +13,10 @@ body, html {
     transform: scale(0.98); /* Slightly scale down the logo when it is clicked */
 }
 
-.logo {
-    max-width: 200px; /* Adjust as needed */
-    margin-bottom: 20px;
-}
-
 #roastDisplay {
     font-family: 'Oswald', sans-serif;
-    font-size: 33px; /* Adjusted size, triple the original assuming the original was 16px */
-    color: #333; /* Text color */
+    font-size: 37px; /* Adjusted size, triple the original assuming the original was 16px */
+    color: #ffffff; /* Text color */
     padding: 15px; /* Padding around the text */
     text-align: center; /* Alignment of text */
     border: 3px solid #ccc; /* Optional border */
@@ -40,7 +36,31 @@ body, html {
     justify-content: center;
     text-align: center;
     padding: 20px;
-    background-color: #f4f4f4;
+    border-radius: 10%;
+    opacity:90%;
+    background: linear-gradient(to right, #dacfbb, #c2b795, #b3a58b, #d1c4ab, #ddc9a2);
+}
+/* Assuming .container is the parent element of your image */
+.container {
+    width: 100%; /* This ensures that the container stretches full width */
+}
+
+.logo {
+    width: 100%; /* Makes the image stretch to cover the full width */
+    height: auto; /* Maintains the aspect ratio */
+    object-fit: cover; /* Covers the area without losing aspect ratio */
+    margin: 20px;
+}
+
+.logo-container {
+    width: calc(100% - 40px); /* Adjusts for the margin */
+    margin: 20px;
+    display: flex; /* This will center your image */
+    justify-content: center; /* Align horizontally */
+    align-items: center; /* Align vertically */
+    background-image: url('./bg_img.png'); /* Set your background image here */
+    background-size: cover; /* Cover the entire area of the div */
+    background-position: center; /* Center the background image */
 }
 
 /* Social media icons */
@@ -91,16 +111,22 @@ a:hover {
     background-color: #f5f5f5;
 }
 
-.navbar-logo img {
-    height: 40px; /* Adjust the height to fit your navbar */
-    width: auto; /* Keeps the logo's aspect ratio */
-    vertical-align: middle; /* Aligns the image vertically in the navbar */
-  }
-  
+  /* Default good mode styles */
+body {
+    background-color: white;
+    color: black;
+}
 
-@media (max-width: 768px) {
-    .navbar-logo img {
-      height: 30px; /* Smaller logo for mobile devices */
-    }
-  }
-  
+/* Evil mode styles */
+body.evil-mode {
+    background-color: black;
+    color: red;
+}
+
+.navbar.evil-mode {
+    background-color: darkred;
+}
+
+.logo.evil-mode {
+    filter: invert(100%);
+}

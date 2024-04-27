@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    let isEvilMode = false;
+    const modeToggleButton = document.getElementById('modeToggle');
+    const bodyElement = document.body;
+    const navbar = document.querySelector('.navbar');
+    const logo = document.querySelector('.logo');
+
+    modeToggleButton.addEventListener('click', function() {
+        isEvilMode = !isEvilMode; // Toggle the state
+        if (isEvilMode) {
+            bodyElement.classList.add('evil-mode');
+            navbar.classList.add('evil-mode');
+            logo.classList.add('evil-mode');
+            modeToggleButton.textContent = 'Switch to Good Mode';
+        } else {
+            bodyElement.classList.remove('evil-mode');
+            navbar.classList.remove('evil-mode');
+            logo.classList.remove('evil-mode');
+            modeToggleButton.textContent = 'Switch to Evil Mode';
+        }
+    });
+    
     let typeItInstance = null;
 
     function initializeTypeIt() {
