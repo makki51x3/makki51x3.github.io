@@ -234,6 +234,13 @@ a:hover {
 #contact form {
     flex: 1;
     width: 70%;
+    max-width:700px;
+}
+
+@media (max-width: 768px) {
+    #contact form {
+        width: 100%;
+    }
 }
 
 #contact .form-group {
