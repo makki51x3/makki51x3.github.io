@@ -2,14 +2,38 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(center, #e4e1db, #d6d4ce, #d6d3cd, #d6d4ce, #e4e1db);
+}
+
+body{
+    background: linear-gradient(to left, #c0b39a,#c0b39a, #c4b18f, #ac9b7b, #c0b39a);
+}
+
+.nav-link{
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    opacity:90%;
+    color:white;
+    font-weight: 700; /* Larger size for active nav link */
 }
 
 .navbar {
-    margin-bottom: 20px;
     transition: background-color 0.3s; /* Smooth transition for background color */
     background: linear-gradient(to bottom, #b3a16b,#c0b39a, #c4b18f, #ac9b7b, #8f784d);
 }
+
+.nav-link:hover, .nav-link:active, .nav-link:focus {
+    text-decoration: none; /* Optional: removes underline on hover */
+    transform: scale(1.13) rotate(-1deg); /* Makes the icon slightly larger and rotates it to the right */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity changes */
+}
+
 
 /* Evil mode styles for body */
 body.evil-mode {
@@ -268,4 +292,24 @@ a:hover {
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
     min-width:100%;
     background: linear-gradient(to bottom, #b39f7b, #b39f7b, #bba988, #b39f7b, #948363);
+}
+
+/* Remove outlines and borders on hover, focus, or active states for social icons */
+.social-icon:focus,
+.social-icon:hover,
+.social-icon:active {
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+/* Additional style to remove any outline around the SVG elements specifically */
+.social-icon svg:focus,
+.social-icon svg:hover,
+.social-icon svg:active {
+    opacity: 0.7; /* Makes the icon more transparent on hover */
+    outline: none;
+    border: none;
+    transform: scale(1.25) rotate(5deg); /* Makes the icon slightly larger and rotates it to the right */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity changes */
 }
