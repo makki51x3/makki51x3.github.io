@@ -60,10 +60,8 @@ body.good-mode {
     padding: 20px;
     border-radius: 10%;
     opacity:90%;
-}
-/* Assuming .container is the parent element of your image */
-.container {
-    width: 100%; /* This ensures that the container stretches full width */
+    width: 100%;
+    background: linear-gradient(to left, #ccae78,#ac9770, #b99d6c, #b89e6e, #ccae78);
 }
 
 .logo {
@@ -132,14 +130,29 @@ a:hover {
     background-color: #f5f5f5;
 }
 
-/* Evil mode styles for .container */
 .container.evil-mode {
-    background: linear-gradient(to right, #080808, #251f1f, #1c1919, #1a1717, #080808); /* Dark gradient adjusted for container */
+    background: linear-gradient(to right, #1a1717, #251f1f, #1c1919, #1a1717, #1a1717);
+    background-size: 300% 100%; /* More gradient to slide */
 }
 
-/* Update styles for navbar and logo if needed */
-.navbar.evil-mode {
-    background-color: #a30000; /* Darker navbar background */
+.container.evil-mode:hover {
+    animation: slideGradient 4s linear infinite; /* Faster animation */
+}
+
+.container {
+    background-size: 300% 100%; /* More gradient to slide */
+}
+
+.container:hover {
+    animation: slideGradient 4s linear infinite; /* Faster animation */
+}
+@keyframes slideGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: -200% 50%; /* Ensures full range is utilized */
+    }
 }
 
 .logo.evil-mode {
