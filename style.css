@@ -180,3 +180,92 @@ a:hover {
 #contact.evil-mode{
     background: linear-gradient(to bottom, #080808, #251f1f, #1c1919, #1a1717, #080808); /* Dark gradient adjusted for container */
 }
+
+#contact {
+    padding: 50px;
+    width: 100%; /* Ensures full width */
+    background: linear-gradient(to bottom, #dacfbb, #c2b795, #b3a58b, #d1c4ab, #ddc9a2); /* Good mode gradient */
+    color: #333; /* Good mode text color */
+}
+
+#contact.evil-mode {
+    background: linear-gradient(to bottom, #080808, #251f1f, #1c1919, #1a1717, #080808); /* Dark gradient adjusted for evil mode */
+    color: white; /* Evil mode text color */
+}
+
+#contact h1 {
+    margin-bottom: 30px; /* Adds space below the heading */
+}
+
+#contact label {
+    color: inherit; /* Ensures label colors match the text color of the container */
+}
+
+#contact .form-control {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    margin-bottom: 20px; /* Adds space below each input */
+}
+
+#contact form {
+    flex: 1;
+    width: 70%;
+}
+
+#contact .form-group {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    margin: 30px; /* Adds space below each input */
+    font-size: large;
+    font-weight: 600;
+}
+
+#contact .form-group label{
+    margin: 10px; /* Adds space below each input */
+}
+
+#contact .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.95);
+    outline: none; /* Removes default focus outline */
+    box-shadow: none; /* Removes Bootstrap default box-shadow */
+}
+
+#contact .btn {
+    background-color: #a3906c;
+    border: none;
+    border-radius: 11px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#contact .btn:hover {
+    background-color: #bba988;
+}
+
+#contact.evil-mode .btn {
+    background-color: #776e6c;
+    border: none;
+    border-radius: 11px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#contact.evil-mode .btn:hover {
+    background-color: #291c1c;;
+}
+
+.fixedFooter{
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 20px; 
+    border-radius: 0; 
+    color: white; 
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    min-width:100%;
+    background: linear-gradient(to bottom, #b39f7b, #b39f7b, #bba988, #b39f7b, #948363);
+}
