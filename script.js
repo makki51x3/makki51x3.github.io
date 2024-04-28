@@ -24,7 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     typeItInstance.type("Welcome!").go();
 
     function fetchJoke() {
-        fetch('https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart')
+        let jokeQuery = "https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Pun,Christmas?blacklistFlags=nsfw,religious,political,racist,sexist,explicit"
+        if(isEvilMode){
+            jokeQuery = "https://v2.jokeapi.dev/joke/Dark,Spooky?type=single,twopart"
+        }
+        fetch(jokeQuery)
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
