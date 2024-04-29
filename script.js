@@ -1,29 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let isEvilMode = false;
+    let isEvilMode = localStorage.getItem('isEvilMode') === 'true';
     const bodyElement = document.body;
     const navbar = document.querySelector('.navbar');
     const logo = document.querySelector('.logo');
     const containers = document.querySelectorAll('.container');
-    // const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('contact');
+    // const socialIcons = document.querySelectorAll('.social-icon');
+
+    applyCurrentMode();  // Apply the current mode when the page loads
 
     let typeItInstance = initializeTypeIt();
     typeItInstance.type("Welcome!").go();
 
-    // Update logo click to toggle modes and fetch a new joke immediately
     logo.addEventListener('click', function() {
-        isEvilMode = !isEvilMode; // Toggle the mode state
+        isEvilMode = !isEvilMode;
+        localStorage.setItem('isEvilMode', isEvilMode); // Store mode in localStorage
+        applyCurrentMode();  // Update classes when mode changes
+        fetchJoke();  // Fetch new joke immediately when the mode is switched
+    });
+
+    function applyCurrentMode() {
+        // Toggle the mode for main body and navbar
         bodyElement.classList.toggle('evil-mode', isEvilMode);
         bodyElement.classList.toggle('good-mode', !isEvilMode);
         navbar.classList.toggle('evil-mode', isEvilMode);
         navbar.classList.toggle('good-mode', !isEvilMode);
-        logo.classList.toggle('evil-mode', isEvilMode);
-        logo.src = isEvilMode ? './assets/images/devil_MENACE.png' : './assets/images/angel_MENACE.png';
+        
+        if(logo){
+            logo.classList.toggle('evil-mode', isEvilMode);
+            logo.src = isEvilMode ? './assets/images/devil_MENACE.png' : './assets/images/angel_MENACE.png';
+        }
+        
+        // Apply mode classes to each container
+        containers.forEach(container => {
+            container.classList.toggle('evil-mode', isEvilMode);
+            container.classList.toggle('good-mode', !isEvilMode);
+        });
 
-        containers.forEach(container => container.classList.toggle('evil-mode', isEvilMode));
-        // contactSection.classList.toggle('evil-mode', isEvilMode);
-
-        fetchJoke(); // Fetch new joke immediately when the mode is switched
-    });
+        // Apply mode classes to contact section
+        if (contactSection){
+            contactSection.classList.toggle('evil-mode', isEvilMode);
+            contactSection.classList.toggle('good-mode', !isEvilMode);
+        }
+        // Apply mode classes to social icons
+        // socialIcons.forEach(icon => {
+        //     icon.classList.toggle('evil-mode', isEvilMode);
+        //     icon.classList.toggle('good-mode', !isEvilMode);
+        // });
+    }
 
     function initializeTypeIt() {
         return new TypeIt('#roastDisplay', {
