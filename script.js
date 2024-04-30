@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const bodyElement = document.body;
     const navbar = document.querySelector('.navbar');
     const logo = document.querySelector('.logo');
+    const logoNavBar = document.getElementById('logoNavBar');
     const containers = document.querySelectorAll('.container');
     const contactSection = document.getElementById('contact');
     // const socialIcons = document.querySelectorAll('.social-icon');
@@ -13,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     typeItInstance.type("Welcome!").go();
 
     logo.addEventListener('click', function() {
+        isEvilMode = !isEvilMode;
+        localStorage.setItem('isEvilMode', isEvilMode); // Store mode in localStorage
+        applyCurrentMode();  // Update classes when mode changes
+        fetchJoke();  // Fetch new joke immediately when the mode is switched
+    });
+
+    logoNavBar.addEventListener('click', function() {
         isEvilMode = !isEvilMode;
         localStorage.setItem('isEvilMode', isEvilMode); // Store mode in localStorage
         applyCurrentMode();  // Update classes when mode changes
