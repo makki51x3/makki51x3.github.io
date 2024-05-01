@@ -8,6 +8,12 @@ body{
     background: linear-gradient(to left, #c0b39a,#c0b39a, #c4b18f, #ac9b7b, #c0b39a);
 }
 
+#navbarNav .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .nav-link{
     font-size: x-large;
     font-weight: 500;
@@ -66,7 +72,7 @@ body.good-mode {
 
 #roastDisplay {
     font-family: 'Oswald', sans-serif;
-    font-size: xxx-large; /* Adjusted size, triple the original assuming the original was 16px */
+    font-size: 26px; /* Adjusted size, triple the original assuming the original was 16px */
     color: #ffffff; /* Text color */
     padding: 15px; /* Padding around the text */
     text-align: center; /* Alignment of text */
@@ -314,15 +320,6 @@ a:hover {
     transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity changes */
 }
 
-@media (max-width: 768px) {
-    #contact form {
-        width: 100%;
-    }
-    #roastDisplay {
-        font-size: xx-large; 
-    }
-}
-
 .image-container {
     position: relative;
     display: inline-block;  /* This will make the container size according to its content */
@@ -371,5 +368,28 @@ a:hover {
         font-size: medium;
         font-weight: 600;
         font-family:Verdana;
+    }
+}
+
+@media (max-width: 767px) {
+    #contact form {
+        width: 100%;
+    }
+    #roastDisplay {
+        font-size: 25px; 
+    }
+}
+
+/* Styles for screens between 768px and 999px wide */
+@media (min-width: 768px) and (max-width: 999px) {
+    #roastDisplay {
+        font-size: 32px; 
+    }
+}
+
+/* Styles for screens 1000px wide and above */
+@media (min-width: 1000px) {
+    #roastDisplay {
+        font-size: 42px; 
     }
 }
