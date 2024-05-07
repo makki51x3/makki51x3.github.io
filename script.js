@@ -101,3 +101,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+
+$(document).ready(function() {
+    var $roastDisplay = $("#roastDisplay");
+
+    // Function to apply FitText
+    function applyFitText() {
+        $roastDisplay.fitText(1.2, { minFontSize: '20px', maxFontSize: '40px' });
+    }
+
+    // Initial application
+    applyFitText();
+
+    // Reapply FitText on window resize
+    $(window).resize(applyFitText);
+});

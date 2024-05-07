@@ -72,7 +72,6 @@ body.good-mode {
 
 #roastDisplay {
     font-family: 'Oswald', sans-serif;
-    font-size: 26px; /* Adjusted size, triple the original assuming the original was 16px */
     color: #ffffff; /* Text color */
     padding: 15px; /* Padding around the text */
     text-align: center; /* Alignment of text */
@@ -122,7 +121,6 @@ h1 {
 }
 
 button {
-    background-color: #4CAF50;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -131,10 +129,6 @@ button {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
 }
 
 p, a {
@@ -363,6 +357,7 @@ a:hover {
     font-weight: 600;
     font-family:Verdana;
 }
+
 @media (max-width: 800px) {
     .overlay p{
         font-size: medium;
@@ -375,21 +370,29 @@ a:hover {
     #contact form {
         width: 100%;
     }
-    #roastDisplay {
-        font-size: 25px; 
+    #roastContainer {
+        margin-top:40px; 
+        margin-bottom: 40px; 
+        width:90%;
     }
 }
 
 /* Styles for screens between 768px and 999px wide */
-@media (min-width: 768px) and (max-width: 999px) {
-    #roastDisplay {
-        font-size: 32px; 
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    #roastContainer {
+        margin-top:70px; 
+        margin-bottom: 70px; 
+        width:80%;
     }
 }
 
 /* Styles for screens 1000px wide and above */
-@media (min-width: 1000px) {
-    #roastDisplay {
-        font-size: 42px; 
+@media (min-width: 1024px) {
+
+    #roastContainer {
+        margin-top:100px; 
+        margin-bottom: 100px; 
+        max-width:800px;
     }
 }
